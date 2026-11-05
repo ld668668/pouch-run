@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Pouch Run · a Squeekchain arcade game</title>
+<meta name="description" content="Pouch Run: an arcade runner where the speed, the night and the golden seeds come from Squeektoshi's real wheel on Squeekchain.">
+<!-- squeekchain-verification: PLACEHOLDER -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐹</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="brand">POUCH<span>RUN</span></div>
+    <div class="live" id="live">
+      <span class="dot" id="liveDot"></span>
+      <span id="liveText">Connecting to the wheel…</span>
+    </div>
+  </header>
+
+  <div id="stage">
+    <canvas id="game" width="360" height="640"></canvas>
+
+    <div class="overlay" id="menu">
+      <h1>POUCH<span>RUN</span></h1>
+      <p class="tag">Squeektoshi runs the real wheel. You run the track beside him.</p>
+      <ul class="rules">
+        <li><b>His RPM is your speed.</b> The faster he runs, the faster the track and the bigger your multiplier.</li>
+        <li><b>Fill your cheek pouch</b> with seeds, then stash them at a burrow to bank points. Crash and you drop everything unbanked.</li>
+        <li><b>Every real Squeek block</b> the wheel completes drops a golden Block Seed onto your track.</li>
+        <li><b>When he sleeps, night falls.</b> Seeds are worth double, but you only see what your lantern shows.</li>
+      </ul>
+      <div class="today" id="todayGoal"></div>
+      <button id="playBtn" class="btn">PLAY</button>
+      <p class="keys">← → or A D to switch lanes · swipe on mobile · Space to stash at a burrow</p>
+    </div>
+
+    <div class="overlay hidden" id="over">
+      <h2>RUN OVER</h2>
+      <div class="big" id="finalScore">0</div>
+      <div class="stats" id="finalStats"></div>
+      <div class="best" id="bestLine"></div>
+      <div class="row">
+        <button id="againBtn" class="btn">RUN AGAIN</button>
+        <a id="shareBtn" class="btn ghost" target="_blank" rel="noopener">SHARE ON X</a>
+      </div>
+      <div class="sign">
+        <button id="signBtn" class="btn ghost small">SIGN THIS RUN ON SEPOLIA</button>
+        <p class="note" id="signNote">Optional. Sends a harmless zero-value SQK approve from your own wallet on the Sepolia testnet, so your run leaves a mark on Squeekchain. No tokens move.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="board">
+    <h3>Your best runs</h3>
+    <ol id="scores"></ol>
+    <h3>The wheel right now</h3>
+    <dl class="wheel">
+      <div><dt>Status</dt><dd id="wStatus">–</dd></div>
+      <div><dt>RPM</dt><dd id="wRpm">–</dd></div>
+      <div><dt>Today</dt><dd id="wDist">–</dd></div>
+      <div><dt>Block height</dt><dd id="wHeight">–</dd></div>
+    </dl>
+    <p class="fine">Live data from the public <a href="https://docs.squeekchain.com/developers/api/" target="_blank" rel="noopener">Squeekchain API</a>. Projected blocks are provisional until they settle on Ethereum. If the API is unreachable the game says so and switches to Practice mode with simulated data.</p>
+    <p class="fine">Community project, not affiliated with the Squeekchain team. Source on <a id="repoLink" href="#" target="_blank" rel="noopener">GitHub</a>.</p>
+  </section>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
